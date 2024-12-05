@@ -2,8 +2,9 @@ import FirebaseConfig from "../FirebaseConfig.js";
 import * as THREE from "three";
 
 export default class ButtonCube {
-  constructor(scene, id, buttonsData = null) {
+  constructor(scene, id, buttonsData = null, meshToInteract) {
     this.clickable = true;
+    this.meshToInteract = meshToInteract;
     // this.addDebugLabel();
     this.scene = scene;
     this.buttonSize = 0.5;
@@ -54,6 +55,8 @@ export default class ButtonCube {
       this.startTransition(
         this.isPressed ? this.buttonSize / 0.9 : this.initialY
       );
+
+      
 
       console.log(this.uid);
 
