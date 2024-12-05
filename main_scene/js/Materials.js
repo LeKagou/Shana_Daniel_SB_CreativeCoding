@@ -104,7 +104,7 @@ export default class Materials {
    * @param {number} colorIndex - Index de la couleur dans le tableau PASTEL_COLORS
    */
   createStandardMaterial(colorIndex) {
-    this.standardMaterial = new THREE.MeshStandardMaterial({
+    this.standardMaterial = new THREE.MeshPhysicalMaterial({
       color:
         Materials.PASTEL_COLORS[colorIndex % Materials.PASTEL_COLORS.length],
       roughness: Materials.DEFAULTS.roughness,
@@ -117,7 +117,7 @@ export default class Materials {
    */
   getBlackMaterial() {
     if (!this.blackMaterial) {
-      this.blackMaterial = new THREE.MeshStandardMaterial({
+      this.blackMaterial = new THREE.MeshPhysicalMaterial({
         color: "#000000",
         roughness: Materials.DEFAULTS.roughness,
         metalness: Materials.DEFAULTS.metalness,
@@ -187,13 +187,13 @@ export default class Materials {
 
   /**
    * Récupère le matériau standard
-   * @returns {THREE.MeshStandardMaterial} Matériau standard
+   * @returns {THREE.MeshPhysicalMaterial} Matériau standard
    */
   getStandardMaterial() {
     return this.standardMaterial;
   }
   getColorizedStandardMaterial(color) {
-    return new THREE.MeshStandardMaterial({
+    return new THREE.MeshPhysicalMaterial({
       color: color,
       roughness: Materials.DEFAULTS.roughness,
       metalness: Materials.DEFAULTS.metalness,
@@ -205,7 +205,7 @@ export default class Materials {
    */
   getFloorMaterial() {
     if (!this.floorMaterial) {
-      this.floorMaterial = new THREE.MeshStandardMaterial({
+      this.floorMaterial = new THREE.MeshPhysicalMaterial({
         color: Materials.FLOOR_COLORS[this.currentColorIndex].floor,
         roughness: Materials.FLOOR_DEFAULTS.floorRoughness,
         metalness: Materials.FLOOR_DEFAULTS.floorMetalness,
@@ -220,7 +220,7 @@ export default class Materials {
    */
   getInnerFloorMaterial() {
     if (!this.innerFloorMaterial) {
-      this.innerFloorMaterial = new THREE.MeshStandardMaterial({
+      this.innerFloorMaterial = new THREE.MeshPhysicalMaterial({
         color: Materials.FLOOR_COLORS[this.currentColorIndex].inner,
         roughness: Materials.FLOOR_DEFAULTS.innerRoughness,
         metalness: Materials.FLOOR_DEFAULTS.innerMetalness,

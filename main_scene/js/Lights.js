@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import {RGBELoader} from "three/examples/jsm/loaders/RGBELoader.js";
+import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
 /**
  * Classe gérant les lumières de la scène
  */
@@ -22,11 +22,14 @@ export default class Lights {
   setupLights() {
     //this.scene.background = new THREE.Color('rgb(222, 222, 222)');
     this.createMainLight();
-    this.hdri = new RGBELoader().load("/studio_small_04_2k./hdr",(environnementMap) => {
-      environnementMap.mapping = THREE.EquirectangularReflectionMapping;
-      this.scene.background = environnementMap;
-      this.scene.environment = environnementMap;
-    });
+    /*this.hdri = new RGBELoader().load(
+      "/studio_small_04_2k.hdr",
+      (environnementMap) => {
+        environnementMap.mapping = THREE.EquirectangularReflectionMapping;
+        this.scene.background = environnementMap;
+        this.scene.environment = environnementMap;
+      }
+    );*/
     this.createAmbientLight();
     this.createHemisphereLight();
     //this.createFog();
@@ -37,7 +40,7 @@ export default class Lights {
    */
   createMainLight() {
     this.mainLight = new THREE.DirectionalLight("#ffffff", 3);
-    this.mainLight.position.set(-10, 10, 5);
+    this.mainLight.position.set(-5, 5, 0);
 
     let helpLight = new THREE.DirectionalLightHelper(this.mainLight, 1);
     this.scene.add(helpLight);
@@ -54,21 +57,24 @@ export default class Lights {
     this.mainLight.shadow.camera.right = 17;
     this.mainLight.shadow.camera.top = 17;
     this.mainLight.shadow.camera.bottom = -17;
-    this.mainLight.shadow.radius = 10;
-    this.mainLight.shadow.bias = - 0.0005;
+    this.mainLight.shadow.radius = 2;
+    this.mainLight.shadow.bias = -0.0005;
 
     this.mainLight.shadow.blurSamples = 32;
 
     this.scene.add(this.mainLight);
-
   }
   /**
- * Crée et configure la lumière d'hémisphère
- */
+   * Crée et configure la lumière d'hémisphère
+   */
   createHemisphereLight() {
     console.log(this.warmColor);
     this.groundColor = "#ffffff";
-    this.HemisphereLight = new THREE.HemisphereLight(this.warmColor, this.groundColor, 1);
+    this.HemisphereLight = new THREE.HemisphereLight(
+      this.warmColor,
+      this.groundColor,
+      1
+    );
     this.scene.add(this.HemisphereLight);
   }
 
@@ -77,7 +83,7 @@ export default class Lights {
    */
   createAmbientLight() {
     this.ambientLight = new THREE.AmbientLight(this.neutralColor, 0.4);
-    this.scene.add(this.ambientLight);;
+    this.scene.add(this.ambientLight);
   }
   createFog() {
     const near = 6;

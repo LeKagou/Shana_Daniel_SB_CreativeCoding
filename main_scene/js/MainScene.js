@@ -9,6 +9,7 @@ import { loadModels } from "./loader";
 import { modelDescriptors } from "./modelDescriptors";
 import Piece from "./Objects/Piece.js";
 import {MaterialsManager} from "./MaterialsManager.js";
+import { cos } from "three/webgpu";
 
 
 let finalOffset = 2;
@@ -61,64 +62,64 @@ export default class MainScene {
 
       obj.traverse((child) => {
         if (child.isMesh) {
-          /*
-          if(i < this.arrayMaterials.length)
-          {
-            if(this.arrayMaterials[i].objName == child.name){
-              console.log(this.arrayMaterials[i].objName,child.name);
-              for (let j = 0; j < this.arrayMaterials[i].matProperties.length; j++) {
-
-                console.log(j,child.material,child.material.length);
-
-                //verifier si child.material est un tableau
-                i
-
-                if(child.material[j] == undefined){
-                  child.material = new THREE.MeshPhongMaterial({
-                    color: this.arrayMaterials[i].matProperties[j].color, 
-                    roughness: this.arrayMaterials[i].matProperties[j].roughness, 
-                    metalness: this.arrayMaterials[i].matProperties[j].metalness,
-                    flatShading: this.arrayMaterials[i].matProperties[j].flatShading,
-                  });
-
-                }else if(child.material.length > 1){
-                  child.material[j] = new THREE.MeshPhongMaterial({
-                    color: this.arrayMaterials[i].matProperties[j].color, 
-                    roughness: this.arrayMaterials[i].matProperties[j].roughness, 
-                    metalness: this.arrayMaterials[i].matProperties[j].metalness,
-                    flatShading: this.arrayMaterials[i].matProperties[j].flatShading,
-                  });
+          console.log(child.name);
+          let checkIn = false;
+          for(let i = 0; i < this.arrayMaterials.length; i++){
+              if(child.name  == this.arrayMaterials[i].objName){
+                for (let j = 0; j < this.arrayMaterials[i].matProperties.length; j++) {
+                  if(child.material[j] == undefined){
+                    child.material = new THREE.MeshPhysicalMaterial({
+                      color: this.arrayMaterials[i].matProperties[j].color, 
+                      roughness: this.arrayMaterials[i].matProperties[j].roughness, 
+                      metalness: this.arrayMaterials[i].matProperties[j].metalness,
+                      flatShading: this.arrayMaterials[i].matProperties[j].flatShading,
+                      sheen: this.arrayMaterials[i].matProperties[j].sheen,
+                      sheenColor: this.arrayMaterials[i].matProperties[j].sheenColor,
+                    });
+                    checkIn = true;
+                  }else if(child.material.length > 1){
+                    child.material[j] = new THREE.MeshPhysicalMaterial({
+                      color: this.arrayMaterials[i].matProperties[j].color, 
+                      roughness: this.arrayMaterials[i].matProperties[j].roughness, 
+                      metalness: this.arrayMaterials[i].matProperties[j].metalness,
+                      flatShading: this.arrayMaterials[i].matProperties[j].flatShading,
+                      sheen: this.arrayMaterials[i].matProperties[j].sheen,
+                      sheenColor: this.arrayMaterials[i].matProperties[j].sheenColor,
+                    });
+                    checkIn = true;
+                  }
                 }
               }
-            }
-          }*/
+          };
 
-          this.arrayMaterials.forEach(matMan => {
-            if(matMan.objName == child.name){
-              for (let j = 0; j < matMan.matProperties.length; j++) {
-                if(child.material[j] == undefined){
-                  child.material = new THREE.MeshPhysicalMaterial({
-                    color: matMan.matProperties[j].color, 
-                    roughness: matMan.matProperties[j].roughness, 
-                    metalness: matMan.matProperties[j].metalness,
-                    flatShading: matMan.matProperties[j].flatShading,
-                    sheen: matMan.matProperties[j].sheen,
-                    sheenColor: matMan.matProperties[j].sheenColor,
-                  });
-
-                }else if(child.material.length > 1){
-                  child.material[j] = new THREE.MeshPhysicalMaterial({
-                    color: matMan.matProperties[j].color, 
-                    roughness: matMan.matProperties[j].roughness, 
-                    metalness: matMan.matProperties[j].metalness,
-                    flatShading: matMan.matProperties[j].flatShading,
-                    sheen: matMan.matProperties[j].sheen,
-                    sheenColor: matMan.matProperties[j].sheenColor,
-                  });
-                }
+          if(checkIn == false){
+            for (let j = 0; j < this.arrayMaterials[0].matProperties.length; j++) {
+              let previousColor = child.material.color;
+              console.log(previousColor);
+              if(child.material[j] == undefined){
+                child.material = new THREE.MeshPhysicalMaterial({
+                  color: previousColor,
+                  roughness: this.arrayMaterials[0].matProperties[j].roughness, 
+                  metalness: this.arrayMaterials[0].matProperties[j].metalness,
+                  flatShading: this.arrayMaterials[0].matProperties[j].flatShading,
+                  sheen: this.arrayMaterials[0].matProperties[j].sheen,
+                  sheenColor: this.arrayMaterials[0].matProperties[j].sheenColor,
+                });
+                checkIn = true;
+              }else if(child.material.length > 1){
+                child.material[j] = new THREE.MeshPhysicalMaterial({
+                  color: previousColor,
+                  roughness: this.arrayMaterials[0].matProperties[j].roughness, 
+                  metalness: this.arrayMaterials[0].matProperties[j].metalness,
+                  flatShading: this.arrayMaterials[0].matProperties[j].flatShading,
+                  sheen: this.arrayMaterials[0].matProperties[j].sheen,
+                  sheenColor: this.arrayMaterials[0].matProperties[j].sheenColor,
+                });
+                checkIn = true;
               }
             }
-          });     
+          }
+
           //child.material = material;
           child.castShadow = true;
           child.receiveShadow = true;

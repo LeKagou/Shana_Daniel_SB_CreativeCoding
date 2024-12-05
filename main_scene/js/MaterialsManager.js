@@ -4,7 +4,7 @@ export const MaterialsManager = [
         matProperties: [
             {
                 name: "tetstst",
-                color: "rgb(255,255,255)",
+                color: "rgb(0,0,0)",
                 roughness: 0.75,
                 metalness: 0.1,
                 flatShading: false,
