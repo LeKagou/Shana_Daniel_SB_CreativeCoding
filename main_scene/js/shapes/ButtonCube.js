@@ -22,14 +22,14 @@ export default class ButtonCube {
       this.buttonSize, // height - now fixed to buttonSize
       this.buttonDepth // depth
     );
-    this.material = new THREE.MeshPhysicalMaterial({
-      color: "rgb(255,255,255)",
-      roughness: 1,
+    this.material = new THREE.MeshStandardMaterial({
+      color: "rgb(255, 246, 77)",
+      roughness: 0.1,
       metalness: 0.1,
       flatShading: false,
-      ior: 1,
-      reflectivity: 0.2,
-      sheen: 1,
+      ior: 2,
+      reflectivity: 1,
+      sheen: 2,
       sheenColor: "rgb(150,150,150)",
     });
     this.mesh = new THREE.Mesh(this.geometry, this.material);

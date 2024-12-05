@@ -39,6 +39,53 @@ export const modelDescriptors = [
 			position: { x: 0, y: 0, z: 0 },
 			rotation: { x: 0, y: 0, z: 0 },
 		},
+<<<<<<< Updated upstream
+=======
+		OBJmaterial: {
+			color: "rgb(255,100,25)",
+			roughness: 0.75, // Surface mate
+			metalness: 0.1, // Pas d'aspect métallique
+			flatShading: false,
+		}
+	},
+	{
+		src: `${path}/Com/AnimationCom.fbx`,
+		id: "green",
+		type: "fbx",
+		piecePlace: 3,
+		animated: true,
+		offset: { x: 0, y: 0, z: 0 },
+		props: {
+			scale: { x: 1 / divider, y: 1 / divider, z: 1 / divider },
+			position: { x: -6.10 + (1 * gap), y: positionSol, z: -0.4 },
+			rotation: { x: 1.5708, y: 0, z: 0 },
+		},
+		OBJmaterial: {
+			color: "rgb(0,255,0)",
+			roughness: 0.75, // Surface mate
+			metalness: 0.1, // Pas d'aspect métallique
+			flatShading: false,
+		}
+	},
+	{
+		src: `${path}/Com/AnimationCoiffe.fbx`,
+		id: "black",
+		type: "fbx",
+		piecePlace: 4,
+		animated: true,
+		offset: { x: 0, y: 180, z: 0 },
+		props: {
+			scale: { x: 1 / divider, y: 1 / divider, z: 1 / divider },
+			position: { x: -6.10 + (2 * gap), y: positionSol, z: -0.4 },
+			rotation: { x: 1.5708, y: (180 * Math.PI) / 180, z: 0 },
+		},
+		OBJmaterial: {
+			color: "rgb(0,0,0)",
+			roughness: 0.75, // Surface mate
+			metalness: 0.1, // Pas d'aspect métallique
+			flatShading: false,
+		}
+>>>>>>> Stashed changes
 	},
 	{
 		src: `${path}/Com/AnimationHead.fbx`,

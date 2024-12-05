@@ -20,12 +20,17 @@ export default class Lights {
    * Configure toutes les lumières de la scène
    */
   setupLights() {
-    this.scene.background = new THREE.Color('#687296');
+    this.scene.background = new THREE.Color('#fbffb0');
     this.createMainLight();
+<<<<<<< Updated upstream
     this.hdri = new RGBELoader().load("/studio_small_04_2k.hdr", (environnementMap) => {
+=======
+    this.hdri = new RGBELoader().load("\studio_small_04_2k.hdr", (environnementMap) => {
+>>>>>>> Stashed changes
       environnementMap.mapping = THREE.EquirectangularReflectionMapping;
-      this.scene.background = environnementMap;
+      // this.scene.background = environnementMap;
       this.scene.environment = environnementMap;
+      this.scene.environmentIntensity = 0.18;
     });
     // this.createAmbientLight();
     this.createHemisphereLight();
@@ -36,10 +41,10 @@ export default class Lights {
    * Crée et configure la lumière directionnelle principale
    */
   createMainLight() {
-    this.mainLight = new THREE.DirectionalLight("#ffffff", 4);
-    this.secondLight = new THREE.DirectionalLight("#ff6670", 4);
+    this.mainLight = new THREE.DirectionalLight("#ffffff", 3);
+    this.secondLight = new THREE.DirectionalLight("#ffffff", 2);
     this.mainLight.position.set(-15, 15, 7);
-    this.secondLight.position.set(18, 10, 0);
+    this.secondLight.position.set(0, 10, 8);
 
     let helpLight = new THREE.DirectionalLightHelper(this.mainLight, 1);
     let helpLightSecond = new THREE.DirectionalLightHelper(this.secondLight, 1);
@@ -60,27 +65,28 @@ export default class Lights {
 
 
     // Configuration de la caméra d'ombre
-    const radius = 22;
+    const radiusMain = 16;
     this.mainLight.shadow.camera.near = 0.1;
     this.mainLight.shadow.camera.far = 50;
-    this.mainLight.shadow.camera.left = -radius;
-    this.mainLight.shadow.camera.right = radius;
-    this.mainLight.shadow.camera.top = radius;
-    this.mainLight.shadow.camera.bottom = -radius;
-    this.mainLight.shadow.radius = radius;
+    this.mainLight.shadow.camera.left = -radiusMain;
+    this.mainLight.shadow.camera.right = radiusMain;
+    this.mainLight.shadow.camera.top = radiusMain;
+    this.mainLight.shadow.camera.bottom = -radiusMain;
+    this.mainLight.shadow.radius = radiusMain;
     this.mainLight.shadow.bias = - 0.0005;
 
+    const radiusSecond = 10;
     this.secondLight.shadow.camera.near = 0.1;
     this.secondLight.shadow.camera.far = 50;
-    this.secondLight.shadow.camera.left = -radius;
-    this.secondLight.shadow.camera.right = radius;
-    this.secondLight.shadow.camera.top = radius;
-    this.secondLight.shadow.camera.bottom = -radius;
-    this.secondLight.shadow.radius = radius;
+    this.secondLight.shadow.camera.left = -radiusSecond;
+    this.secondLight.shadow.camera.right = radiusSecond;
+    this.secondLight.shadow.camera.top = radiusSecond;
+    this.secondLight.shadow.camera.bottom = -radiusSecond;
+    this.secondLight.shadow.radius = radiusSecond;
     this.secondLight.shadow.bias = - 0.0005;
 
-    this.mainLight.shadow.blurSamples = 16;
-    this.secondLight.shadow.blurSamples = 32;
+    this.mainLight.shadow.blurSamples = 32;
+    this.secondLight.shadow.blurSamples = 16;
 
 
     this.scene.add(this.mainLight);
@@ -92,7 +98,7 @@ export default class Lights {
  */
   createHemisphereLight() {
     // console.log(this.warmColor);
-    this.groundColor = "#cce0ff";
+    this.groundColor = "#6ba6ff";
     this.HemisphereLight = new THREE.HemisphereLight("#ffffff", this.groundColor, 1);
     this.scene.add(this.HemisphereLight);
   }

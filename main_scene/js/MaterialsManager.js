@@ -5,7 +5,11 @@ export const MaterialsManager = [
             {
                 name: "tetstst",
                 color: "rgb(0,0,0)",
+<<<<<<< Updated upstream
                 roughness: 0.2,
+=======
+                roughness: 0.1,
+>>>>>>> Stashed changes
                 metalness: 1,
                 flatShading: false,
                 ior: 2,
@@ -14,8 +18,8 @@ export const MaterialsManager = [
                 sheenColor: "rgb(150,150,150)",
             },
         ]
-	},
-	{
+    },
+    {
         objName: "Base",
         matProperties: [
             {
@@ -34,7 +38,7 @@ export const MaterialsManager = [
             {
                 name: "BN",
                 color: "rgb(75,75,75)",
-                roughness: 0.5,
+                roughness: 0.7,
                 metalness: 0,
                 flatShading: false,
                 ior: 1.5,
@@ -44,8 +48,8 @@ export const MaterialsManager = [
             },
             {
                 name: "BR",
-                color: "rgb(235,100,100)",
-                roughness: 0.5,
+                color: "rgb(244, 255, 25)",
+                roughness: 0.7,
                 metalness: 0,
                 flatShading: false,
                 ior: 1.5,
@@ -54,22 +58,23 @@ export const MaterialsManager = [
                 sheenColor: "rgb(150,150,150)",
             },
         ]
-	},
+    },
     {
         objName: "Sol",
         matProperties: [
             {
                 name: "Sol",
                 color: "rgb(150,200,255)",
-                roughness: 0.5,
+                roughness: 0.1,
                 metalness: 0,
                 flatShading: false,
                 ior: 1.5,
                 reflectivity: 0.5,
                 sheen: 0,
-                sheenColor: "rgb(150,150,150)",
+                sheenColor: "rgb(200,200,200)",
             },
         ]
+<<<<<<< Updated upstream
 	},
     {
         objName: "Extension",
@@ -87,4 +92,7 @@ export const MaterialsManager = [
             },
         ]
 	},
+=======
+    },
+>>>>>>> Stashed changes
 ];
