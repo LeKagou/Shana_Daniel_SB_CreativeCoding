@@ -20,76 +20,97 @@ export default class Lights {
    * Configure toutes les lumières de la scène
    */
   setupLights() {
-    //this.scene.background = new THREE.Color('rgb(222, 222, 222)');
+    this.scene.background = new THREE.Color('#687296');
     this.createMainLight();
-    /*this.hdri = new RGBELoader().load(
-      "/studio_small_04_2k.hdr",
-      (environnementMap) => {
-        environnementMap.mapping = THREE.EquirectangularReflectionMapping;
-        this.scene.background = environnementMap;
-        this.scene.environment = environnementMap;
-      }
-    );*/
-    this.createAmbientLight();
+    this.hdri = new RGBELoader().load("/studio_small_04_2k./hdr", (environnementMap) => {
+      environnementMap.mapping = THREE.EquirectangularReflectionMapping;
+      this.scene.background = environnementMap;
+      this.scene.environment = environnementMap;
+    });
+    // this.createAmbientLight();
     this.createHemisphereLight();
-    //this.createFog();
+    this.createFog();
   }
 
   /**
    * Crée et configure la lumière directionnelle principale
    */
   createMainLight() {
-    this.mainLight = new THREE.DirectionalLight("#ffffff", 3);
-    this.mainLight.position.set(-5, 5, 0);
+    this.mainLight = new THREE.DirectionalLight("#ffffff", 4);
+    this.secondLight = new THREE.DirectionalLight("#ff6670", 4);
+    this.mainLight.position.set(-15, 15, 7);
+    this.secondLight.position.set(18, 10, 0);
 
     let helpLight = new THREE.DirectionalLightHelper(this.mainLight, 1);
+    let helpLightSecond = new THREE.DirectionalLightHelper(this.secondLight, 1);
+
     this.scene.add(helpLight);
+    this.scene.add(helpLightSecond);
 
     // Paramètres des ombres
     this.mainLight.castShadow = true;
     this.mainLight.shadow.mapSize.width = 2048;
     this.mainLight.shadow.mapSize.height = 2048;
 
+    this.secondLight.castShadow = true;
+    this.secondLight.shadow.mapSize.width = 2048;
+    this.secondLight.shadow.mapSize.height = 2048;
+
+
+
+
     // Configuration de la caméra d'ombre
+    const radius = 22;
     this.mainLight.shadow.camera.near = 0.1;
     this.mainLight.shadow.camera.far = 50;
-    this.mainLight.shadow.camera.left = -17;
-    this.mainLight.shadow.camera.right = 17;
-    this.mainLight.shadow.camera.top = 17;
-    this.mainLight.shadow.camera.bottom = -17;
-    this.mainLight.shadow.radius = 2;
-    this.mainLight.shadow.bias = -0.0005;
+    this.mainLight.shadow.camera.left = -radius;
+    this.mainLight.shadow.camera.right = radius;
+    this.mainLight.shadow.camera.top = radius;
+    this.mainLight.shadow.camera.bottom = -radius;
+    this.mainLight.shadow.radius = radius;
+    this.mainLight.shadow.bias = - 0.0005;
 
-    this.mainLight.shadow.blurSamples = 32;
+    this.secondLight.shadow.camera.near = 0.1;
+    this.secondLight.shadow.camera.far = 50;
+    this.secondLight.shadow.camera.left = -radius;
+    this.secondLight.shadow.camera.right = radius;
+    this.secondLight.shadow.camera.top = radius;
+    this.secondLight.shadow.camera.bottom = -radius;
+    this.secondLight.shadow.radius = radius;
+    this.secondLight.shadow.bias = - 0.0005;
+
+    this.mainLight.shadow.blurSamples = 16;
+    this.secondLight.shadow.blurSamples = 32;
+
 
     this.scene.add(this.mainLight);
+    this.scene.add(this.secondLight);
+
   }
   /**
-   * Crée et configure la lumière d'hémisphère
-   */
+ * Crée et configure la lumière d'hémisphère
+ */
   createHemisphereLight() {
-    console.log(this.warmColor);
-    this.groundColor = "#ffffff";
-    this.HemisphereLight = new THREE.HemisphereLight(
-      this.warmColor,
-      this.groundColor,
-      1
-    );
+    // console.log(this.warmColor);
+    this.groundColor = "#cce0ff";
+    this.HemisphereLight = new THREE.HemisphereLight("#ffffff", this.groundColor, 1);
     this.scene.add(this.HemisphereLight);
   }
 
   /**
    * Crée et configure la lumière ambiante
    */
-  createAmbientLight() {
-    this.ambientLight = new THREE.AmbientLight(this.neutralColor, 0.4);
-    this.scene.add(this.ambientLight);
-  }
+  // createAmbientLight() {
+  //   this.ambientLight = new THREE.AmbientLight("#ffffff", 0.4);
+  //   this.scene.add(this.ambientLight);;
+  // }
   createFog() {
-    const near = 6;
-    const far = 80;
-    const fogColor = "rgb(0, 0, 90)";
-    this.scene.fog = new THREE.Fog(fogColor, near, far);
+    // const near = 4;
+    // const far = 90;
+    const density = 0.005;
+
+    const fogColor = "rgb(220,220,220)";
+    this.scene.fog = new THREE.FogExp2(fogColor, density);
   }
 
   /**
@@ -101,6 +122,7 @@ export default class Lights {
   updateMainLightPosition(x, y, z) {
     this.mainLight.position.set(x, y, z);
   }
+
 
   /**
    * Met à jour la position de la lumière de remplissage
