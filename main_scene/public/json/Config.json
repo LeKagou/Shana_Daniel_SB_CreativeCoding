@@ -3,8 +3,18 @@
   "NAME": "shana-daniel",
   "OTHERS": [
     {
+      "name": "shana-daniel",
+      "uid": "blue",
+      "title": "snow"
+    },
+    {
       "name": "brikeld-herman",
       "uid": "orange",
+      "title": "snow"
+    },
+    {
+      "name": "steve-yann",
+      "uid": "red",
       "title": "snow"
     },
     {
@@ -16,16 +26,6 @@
       "name": "teo-andreas",
       "uid": "black",
       "title": "fireworks"
-    },
-    {
-      "name": "shana-daniel",
-      "uid": "blue",
-      "title": "snow"
-    },
-    {
-      "name": "steve-yann",
-      "uid": "red",
-      "title": "snow"
     },
     {
       "name": "nyria-jonathan",

@@ -71,4 +71,20 @@ export const MaterialsManager = [
             },
         ]
 	},
+    {
+        objName: "Extension",
+        matProperties: [
+            {
+                name: "Extension",
+                color: "rgb(150,200,255)",
+                roughness: 0.5,
+                metalness: 0,
+                flatShading: false,
+                ior: 1.5,
+                reflectivity: 0.5,
+                sheen: 0,
+                sheenColor: "rgb(150,150,150)",
+            },
+        ]
+	},
 ];
