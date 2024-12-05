@@ -87,4 +87,7 @@ export const MaterialsManager = [
             },
         ]
 	},
+=======
+    },
+>>>>>>> Stashed changes
 ];
