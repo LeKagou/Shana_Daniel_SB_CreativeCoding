@@ -47,44 +47,6 @@ export const modelDescriptors = [
 		}
 	},
 	{
-		src: `${path}/Com/AnimationCom.fbx`,
-		id: "green",
-		type: "fbx",
-		piecePlace: 3,
-		animated: true,
-		offset: { x: 0, y: 0, z: 0 },
-		props: {
-			scale: { x: 1 / divider, y: 1 / divider, z: 1 / divider },
-			position: { x: -6.10 + (1 * gap), y: positionSol, z: -0.4 },
-			rotation: { x: 1.5708, y: 0, z: 0 },
-		},
-		OBJmaterial: {
-			color: "rgb(0,255,0)",
-			roughness: 0.75, // Surface mate
-			metalness: 0.1, // Pas d'aspect métallique
-			flatShading: false,
-		}
-	},
-	{
-		src: `${path}/Com/AnimationCoiffe.fbx`,
-		id: "black",
-		type: "fbx",
-		piecePlace: 4,
-		animated: true,
-		offset: { x: 0, y: 180, z: 0 },
-		props: {
-			scale: { x: 1 / divider, y: 1 / divider, z: 1 / divider },
-			position: { x: -6.10 + (2 * gap), y: positionSol, z: -0.4 },
-			rotation: { x: 1.5708, y: (180 * Math.PI) / 180, z: 0 },
-		},
-		OBJmaterial: {
-			color: "rgb(0,0,0)",
-			roughness: 0.75, // Surface mate
-			metalness: 0.1, // Pas d'aspect métallique
-			flatShading: false,
-		}
-	},
-	{
 		src: `${path}/Com/AnimationHead.fbx`,
 		id: "blue",
 		type: "fbx",
@@ -111,20 +73,20 @@ export const modelDescriptors = [
 		},
 	},
 	{
-		src: `${path}/Com/AnimationCom.fbx`,
+		src: `${path}/Com/AnimationBody1.fbx`,
 		id: "red",
 		type: "fbx",
 		piecePlace: 2,
 		animated: true,
-		offset: { x: 0, y: 0, z: 0 },
+		offset: { x: 0, y: 0, z: 0},
 		props: {
 			scale: { x: 1 / divider, y: 1 / divider, z: 1 / divider },
 			position: { x: -6.10 + (2 * gap), y: positionSol, z: -0.4 },
-			rotation: { x: 1.5708, y: 0, z: 0 },
+			rotation: { x: 0, y: 0, z: 0 },
 		},
 	},
 	{
-		src: `${path}/Com/AnimationCom.fbx`,
+		src: `${path}/Com/AnimationBody2.fbx`,
 		id: "green",
 		type: "fbx",
 		piecePlace: 3,
@@ -133,7 +95,7 @@ export const modelDescriptors = [
 		props: {
 			scale: { x: 1 / divider, y: 1 / divider, z: 1 / divider },
 			position: { x: -6.10 + (3 * gap), y: positionSol, z: -0.4 },
-			rotation: { x: 1.5708, y: 0, z: 0 },
+			rotation: { x: 1.5708, y: 1.5708, z: 0 },
 		},
 	},
 		{

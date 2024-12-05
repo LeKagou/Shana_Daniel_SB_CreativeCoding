@@ -22,6 +22,7 @@ export default class MainScene {
     this.mixers = [];
     this.buttons = [];
     this.pieces = {};
+    this.piecesOBJ = [];
     this.arrayModels = modelDescriptors;
     this.arrayMaterials = MaterialsManager;
     loadModels(this.arrayModels).then((models) => {
@@ -137,6 +138,7 @@ export default class MainScene {
   createPieces(models, i) {
     if (models[i].animated == true) {
       let piece = new Piece(models[i].object, i);
+      this.piecesOBJ.push(piece);
       piece.uid = models[i].id;
       console.log(models[i].piecePlace);
       piece.index = models[i].piecePlace;
@@ -166,7 +168,7 @@ export default class MainScene {
     this.numButtons = 6;
     // liste des couleurs
     for (let i = 0; i < this.otherUIDs.length; i++) {
-      const e = new ButtonCube(this.scene, i, this.otherUIDs);
+      const e = new ButtonCube(this.scene, i, this.otherUIDs,this.piecesOBJ[i]);
       this.buttons.push(e);
     }
   }
