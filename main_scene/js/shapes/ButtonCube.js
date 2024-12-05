@@ -2,19 +2,26 @@ import FirebaseConfig from "../FirebaseConfig.js";
 import * as THREE from "three";
 
 export default class ButtonCube {
-  constructor(scene, id, buttonsData = null, meshToInteract) {
+  constructor(scene, id, buttonsData = null) {
     this.clickable = true;
-    this.meshToInteract = meshToInteract;
     // this.addDebugLabel();
     this.scene = scene;
     this.buttonSize = 0.5;
     this.buttonDepth = 1;
     this.index = id;
     this.uid = buttonsData[id].uid;
+    this.color = buttonsData[id].color;
     //!- Gestion de l'animation
     this.setupAnimationState();
     this.createMesh();
+    this.createColorTag();
     this.setupPosition();
+  }
+  createColorTag() {
+    const geometry = new THREE.CircleGeometry(0.14, 32);
+    const material = new THREE.MeshBasicMaterial({ color: this.color });
+    this.circle = new THREE.Mesh(geometry, material);
+    this.scene.add(this.circle);
   }
 
   createMesh() {
@@ -56,7 +63,7 @@ export default class ButtonCube {
         this.isPressed ? this.buttonSize / 0.9 : this.initialY
       );
 
-      
+
 
       console.log(this.uid);
 
@@ -78,6 +85,12 @@ export default class ButtonCube {
     this.mesh.position.x = -6.12 + this.index * this.spacing;
     this.mesh.position.y = this.posY;
     this.mesh.position.z = this.posZ;
+
+
+    this.circle.position.set(this.mesh.position.x - 0.3,
+      this.mesh.position.y - 0.2,
+      this.mesh.position.z - 9.75);
+
 
     this.initialY = this.mesh.position.y;
   }

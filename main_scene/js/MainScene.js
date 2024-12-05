@@ -8,7 +8,7 @@ import FirebaseListener from "./FirebaseListener.js";
 import { loadModels } from "./loader";
 import { modelDescriptors } from "./modelDescriptors";
 import Piece from "./Objects/Piece.js";
-import {MaterialsManager} from "./MaterialsManager.js";
+import { MaterialsManager } from "./MaterialsManager.js";
 import { cos } from "three/webgpu";
 
 
@@ -65,52 +65,52 @@ export default class MainScene {
         if (child.isMesh) {
           console.log(child.name);
           let checkIn = false;
-          for(let i = 0; i < this.arrayMaterials.length; i++){
-              if(child.name  == this.arrayMaterials[i].objName){
-                for (let j = 0; j < this.arrayMaterials[i].matProperties.length; j++) {
-                  if(child.material[j] == undefined){
-                    child.material = new THREE.MeshPhysicalMaterial({
-                      color: this.arrayMaterials[i].matProperties[j].color, 
-                      roughness: this.arrayMaterials[i].matProperties[j].roughness, 
-                      metalness: this.arrayMaterials[i].matProperties[j].metalness,
-                      flatShading: this.arrayMaterials[i].matProperties[j].flatShading,
-                      sheen: this.arrayMaterials[i].matProperties[j].sheen,
-                      sheenColor: this.arrayMaterials[i].matProperties[j].sheenColor,
-                    });
-                    checkIn = true;
-                  }else if(child.material.length > 1){
-                    child.material[j] = new THREE.MeshPhysicalMaterial({
-                      color: this.arrayMaterials[i].matProperties[j].color, 
-                      roughness: this.arrayMaterials[i].matProperties[j].roughness, 
-                      metalness: this.arrayMaterials[i].matProperties[j].metalness,
-                      flatShading: this.arrayMaterials[i].matProperties[j].flatShading,
-                      sheen: this.arrayMaterials[i].matProperties[j].sheen,
-                      sheenColor: this.arrayMaterials[i].matProperties[j].sheenColor,
-                    });
-                    checkIn = true;
-                  }
+          for (let i = 0; i < this.arrayMaterials.length; i++) {
+            if (child.name == this.arrayMaterials[i].objName) {
+              for (let j = 0; j < this.arrayMaterials[i].matProperties.length; j++) {
+                if (child.material[j] == undefined) {
+                  child.material = new THREE.MeshPhysicalMaterial({
+                    color: this.arrayMaterials[i].matProperties[j].color,
+                    roughness: this.arrayMaterials[i].matProperties[j].roughness,
+                    metalness: this.arrayMaterials[i].matProperties[j].metalness,
+                    flatShading: this.arrayMaterials[i].matProperties[j].flatShading,
+                    sheen: this.arrayMaterials[i].matProperties[j].sheen,
+                    sheenColor: this.arrayMaterials[i].matProperties[j].sheenColor,
+                  });
+                  checkIn = true;
+                } else if (child.material.length > 1) {
+                  child.material[j] = new THREE.MeshPhysicalMaterial({
+                    color: this.arrayMaterials[i].matProperties[j].color,
+                    roughness: this.arrayMaterials[i].matProperties[j].roughness,
+                    metalness: this.arrayMaterials[i].matProperties[j].metalness,
+                    flatShading: this.arrayMaterials[i].matProperties[j].flatShading,
+                    sheen: this.arrayMaterials[i].matProperties[j].sheen,
+                    sheenColor: this.arrayMaterials[i].matProperties[j].sheenColor,
+                  });
+                  checkIn = true;
                 }
               }
+            }
           };
 
-          if(checkIn == false){
+          if (checkIn == false) {
             for (let j = 0; j < this.arrayMaterials[0].matProperties.length; j++) {
               let previousColor = child.material.color;
               console.log(previousColor);
-              if(child.material[j] == undefined){
+              if (child.material[j] == undefined) {
                 child.material = new THREE.MeshPhysicalMaterial({
                   color: "rgb[255,255,255]",
-                  roughness: this.arrayMaterials[0].matProperties[j].roughness, 
+                  roughness: this.arrayMaterials[0].matProperties[j].roughness,
                   metalness: this.arrayMaterials[0].matProperties[j].metalness,
                   flatShading: this.arrayMaterials[0].matProperties[j].flatShading,
                   sheen: this.arrayMaterials[0].matProperties[j].sheen,
                   sheenColor: this.arrayMaterials[0].matProperties[j].sheenColor,
                 });
                 checkIn = true;
-              }else if(child.material.length > 1){
+              } else if (child.material.length > 1) {
                 child.material[j] = new THREE.MeshPhysicalMaterial({
                   color: "rgb[255,255,255]",
-                  roughness: this.arrayMaterials[0].matProperties[j].roughness, 
+                  roughness: this.arrayMaterials[0].matProperties[j].roughness,
                   metalness: this.arrayMaterials[0].matProperties[j].metalness,
                   flatShading: this.arrayMaterials[0].matProperties[j].flatShading,
                   sheen: this.arrayMaterials[0].matProperties[j].sheen,
@@ -168,7 +168,7 @@ export default class MainScene {
     this.numButtons = 6;
     // liste des couleurs
     for (let i = 0; i < this.otherUIDs.length; i++) {
-      const e = new ButtonCube(this.scene, i, this.otherUIDs,this.piecesOBJ[i]);
+      const e = new ButtonCube(this.scene, i, this.otherUIDs);
       this.buttons.push(e);
     }
   }
@@ -186,7 +186,7 @@ export default class MainScene {
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.VSMShadowMap;
     this.renderer.toneMapping = THREE.NeutralToneMapping,
-    this.renderer.toneMappingExposure = 0.8;
+      this.renderer.toneMappingExposure = 0.8;
     //this.renderer.setClearColor("#f0e6e6");
     document.body.appendChild(this.renderer.domElement);
   }
@@ -319,6 +319,7 @@ export default class MainScene {
           name: other.name,
           uid: other.uid,
           title: other.title,
+          color: other.color
         }));
       } catch (error) {
         console.error("Erreur lors du chargement de la configuration:", error);

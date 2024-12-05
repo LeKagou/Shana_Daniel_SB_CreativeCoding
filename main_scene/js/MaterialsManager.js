@@ -70,7 +70,7 @@ export const MaterialsManager = [
                 sheenColor: "rgb(200,200,200)",
             },
         ]
-	},
+    },
     {
         objName: "Extension",
         matProperties: [
@@ -86,8 +86,5 @@ export const MaterialsManager = [
                 sheenColor: "rgb(150,150,150)",
             },
         ]
-	},
-=======
     },
->>>>>>> Stashed changes
 ];

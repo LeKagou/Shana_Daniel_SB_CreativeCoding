@@ -26,7 +26,7 @@ export default class Lights {
       environnementMap.mapping = THREE.EquirectangularReflectionMapping;
       // this.scene.background = environnementMap;
       this.scene.environment = environnementMap;
-      this.scene.environmentIntensity = 0.18;
+      this.scene.environmentIntensity = 0.17;
     });
     // this.createAmbientLight();
     this.createHemisphereLight();

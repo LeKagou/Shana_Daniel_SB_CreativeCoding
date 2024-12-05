@@ -5,32 +5,38 @@
     {
       "name": "shana-daniel",
       "uid": "blue",
-      "title": "snow"
+      "title": "snow",
+      "color": "#183369"
     },
     {
       "name": "brikeld-herman",
       "uid": "orange",
-      "title": "snow"
+      "title": "snow",
+      "color": "#ffbe7d"
     },
     {
       "name": "steve-yann",
       "uid": "red",
-      "title": "snow"
+      "title": "snow",
+      "color": "#d6493c"
     },
     {
       "name": "laurine-dalia",
       "uid": "green",
-      "title": "flower"
+      "title": "flower",
+      "color": "#7eff73"
     },
     {
       "name": "teo-andreas",
       "uid": "black",
-      "title": "fireworks"
+      "title": "fireworks",
+      "color": "#393939"
     },
     {
       "name": "nyria-jonathan",
       "uid": "pink",
-      "title": "fireworks"
+      "title": "fireworks",
+      "color": "#ffb5d0"
     }
   ]
 }
