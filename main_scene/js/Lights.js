@@ -22,11 +22,7 @@ export default class Lights {
   setupLights() {
     this.scene.background = new THREE.Color('#fbffb0');
     this.createMainLight();
-<<<<<<< Updated upstream
-    this.hdri = new RGBELoader().load("/studio_small_04_2k.hdr", (environnementMap) => {
-=======
     this.hdri = new RGBELoader().load("\studio_small_04_2k.hdr", (environnementMap) => {
->>>>>>> Stashed changes
       environnementMap.mapping = THREE.EquirectangularReflectionMapping;
       // this.scene.background = environnementMap;
       this.scene.environment = environnementMap;

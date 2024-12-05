@@ -39,8 +39,6 @@ export const modelDescriptors = [
 			position: { x: 0, y: 0, z: 0 },
 			rotation: { x: 0, y: 0, z: 0 },
 		},
-<<<<<<< Updated upstream
-=======
 		OBJmaterial: {
 			color: "rgb(255,100,25)",
 			roughness: 0.75, // Surface mate
@@ -85,7 +83,6 @@ export const modelDescriptors = [
 			metalness: 0.1, // Pas d'aspect métallique
 			flatShading: false,
 		}
->>>>>>> Stashed changes
 	},
 	{
 		src: `${path}/Com/AnimationHead.fbx`,

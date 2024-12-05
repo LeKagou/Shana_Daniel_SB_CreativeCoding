@@ -5,11 +5,7 @@ export const MaterialsManager = [
             {
                 name: "tetstst",
                 color: "rgb(0,0,0)",
-<<<<<<< Updated upstream
-                roughness: 0.2,
-=======
                 roughness: 0.1,
->>>>>>> Stashed changes
                 metalness: 1,
                 flatShading: false,
                 ior: 2,
@@ -74,7 +70,6 @@ export const MaterialsManager = [
                 sheenColor: "rgb(200,200,200)",
             },
         ]
-<<<<<<< Updated upstream
 	},
     {
         objName: "Extension",
@@ -92,7 +87,4 @@ export const MaterialsManager = [
             },
         ]
 	},
-=======
-    },
->>>>>>> Stashed changes
 ];
