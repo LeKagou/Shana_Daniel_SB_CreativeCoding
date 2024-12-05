@@ -98,7 +98,7 @@ export default class MainScene {
               console.log(previousColor);
               if(child.material[j] == undefined){
                 child.material = new THREE.MeshPhysicalMaterial({
-                  color: previousColor,
+                  color: "rgb[255,255,255]",
                   roughness: this.arrayMaterials[0].matProperties[j].roughness, 
                   metalness: this.arrayMaterials[0].matProperties[j].metalness,
                   flatShading: this.arrayMaterials[0].matProperties[j].flatShading,
@@ -108,7 +108,7 @@ export default class MainScene {
                 checkIn = true;
               }else if(child.material.length > 1){
                 child.material[j] = new THREE.MeshPhysicalMaterial({
-                  color: previousColor,
+                  color: "rgb[255,255,255]",
                   roughness: this.arrayMaterials[0].matProperties[j].roughness, 
                   metalness: this.arrayMaterials[0].matProperties[j].metalness,
                   flatShading: this.arrayMaterials[0].matProperties[j].flatShading,

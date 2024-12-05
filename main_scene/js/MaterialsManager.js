@@ -5,11 +5,11 @@ export const MaterialsManager = [
             {
                 name: "tetstst",
                 color: "rgb(0,0,0)",
-                roughness: 0.75,
-                metalness: 0.1,
+                roughness: 0.2,
+                metalness: 1,
                 flatShading: false,
-                ior: 1.5,
-                reflectivity: 0.5,
+                ior: 2,
+                reflectivity: 1,
                 sheen: 1,
                 sheenColor: "rgb(150,150,150)",
             },
@@ -76,7 +76,7 @@ export const MaterialsManager = [
         matProperties: [
             {
                 name: "Extension",
-                color: "rgb(150,200,255)",
+                color: "rgb(200,50,50)",
                 roughness: 0.5,
                 metalness: 0,
                 flatShading: false,
