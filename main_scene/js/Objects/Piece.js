@@ -102,7 +102,6 @@ export default class Piece {
   async activate(entry) {
     const position = entry.position;
 
-
     if (this.action) {
       if (!this.isPlaying && position == "down" && entry.date != this.old_date) {
         this.old_date = entry.date;

@@ -54,7 +54,7 @@ export default class MainScene {
     this.createPhysicalButtons();
     this.setupInteraction();
     this.render();
-    this.firebaseListener = new FirebaseListener(this.pieces, this.plane);
+    this.firebaseListener = new FirebaseListener(this.pieces, this.plane, this.CapsuleLights);
   }
 
   createModels() {
