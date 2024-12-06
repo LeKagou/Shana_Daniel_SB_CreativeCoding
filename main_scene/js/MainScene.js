@@ -43,7 +43,7 @@ export default class MainScene {
     this.initializeBasicSettings();
     this.setupRenderer();
     this.setupCamera();
-    this.setupControls();
+    // this.setupControls();
     this.setupLights();
     this.setupBloom();
     this.setupEventListeners();
