@@ -44,11 +44,10 @@ export default class Lights {
     this.mainLight.position.set(-15, 15, 7);
     this.secondLight.position.set(0, 10, 8);
 
-    let helpLight = new THREE.DirectionalLightHelper(this.mainLight, 1);
-    let helpLightSecond = new THREE.DirectionalLightHelper(this.secondLight, 1);
-
-    this.scene.add(helpLight);
-    this.scene.add(helpLightSecond);
+    // let helpLight = new THREE.DirectionalLightHelper(this.mainLight, 1);
+    // let helpLightSecond = new THREE.DirectionalLightHelper(this.secondLight, 1);
+    // this.scene.add(helpLight);
+    // this.scene.add(helpLightSecond);
 
     // Paramètres des ombres
     this.mainLight.castShadow = true;
