@@ -14,7 +14,7 @@ export default class FirebaseListener {
     this.lightPlane = lightPlane;
     this.firstCall = false;
     this.CapsuleLights = CapsuleLights;
-    this.initDebugLayer();
+    //this.initDebugLayer();
     this.setupListener();
   }
 
@@ -46,7 +46,7 @@ export default class FirebaseListener {
    */
   handleFirebaseData(data) {
     // Ajoute le message à la couche de débogage
-    this.debugLayer.addMessage(data);
+    //this.debugLayer.addMessage(data);
 
     // Traite chaque entrée de données
     Object.keys(data).forEach((key) => {
