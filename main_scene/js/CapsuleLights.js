@@ -29,10 +29,14 @@ export default class CapsuleLights {
 
     LighUp(elementIndex){
         this.LEDS[elementIndex].material.color.setHex(0x00ff00);
+        this.LEDS[elementIndex].material.emissive.setHex(0x00ff00);
+        this.LEDS[elementIndex].material.emissiveIntensity = 5;
     }
 
     LighOff(elementIndex){
         this.LEDS[elementIndex].material.color.setHex(0x000000);
+        this.LEDS[elementIndex].material.emissive.setHex(0x000000);
+        this.LEDS[elementIndex].material.emissiveIntensity = 0;
     }
 
     degreeToRadians(degrees) {
