@@ -24,7 +24,7 @@ class FirebaseConfig {
     this.database = getDatabase(this.app);
 
     //DYNAMIC PATH
-    this.DEFAULT_PATH = "connections_blue";
+    this.DEFAULT_PATH = "connections";
   }
 
   /**
