@@ -9,8 +9,9 @@ export default class FirebaseListener {
    * Initialise l'écouteur Firebase
    * @param {Array} shapes - Tableau des shapes à contrôler
    */
-  constructor(pieces) {
+  constructor(pieces, lightPlane) {
     this.pieces = pieces;
+    this.lightPlane = lightPlane;
     this.firstCall = false;
     this.initDebugLayer();
     this.setupListener();
@@ -82,9 +83,9 @@ export default class FirebaseListener {
        (piece.isPressed && entry.position === "up") ||
        (!piece.isPressed && entry.position === "down")
     );*/
-    if(key === piece.uid ){
+    if (key === piece.uid) {
       return true;
-    }else{
+    } else {
       return false;
     }
   }
@@ -96,7 +97,6 @@ export default class FirebaseListener {
   updateCubes(newShapes) {
     this.shapes = newShapes;
   }
-
   /**
    * Met à jour la référence à la couche de débogage si nécessaire
    * @param {DebugLayer} newDebugLayer - Nouvelle couche de débogage

@@ -15,7 +15,6 @@ export default class Lights {
     this.neutralColor = ["#FFFFFFFF"];
     this.warmColor = "#FFFFFFFF";
   }
-  //VSMShadowMap
   /**
    * Configure toutes les lumières de la scène
    */
@@ -28,10 +27,13 @@ export default class Lights {
       this.scene.environment = environnementMap;
       this.scene.environmentIntensity = 0.17;
     });
-    // this.createAmbientLight();
+
     this.createHemisphereLight();
     this.createFog();
+
+
   }
+
 
   /**
    * Crée et configure la lumière directionnelle principale
@@ -102,10 +104,6 @@ export default class Lights {
   /**
    * Crée et configure la lumière ambiante
    */
-  // createAmbientLight() {
-  //   this.ambientLight = new THREE.AmbientLight("#ffffff", 0.4);
-  //   this.scene.add(this.ambientLight);;
-  // }
   createFog() {
     // const near = 4;
     // const far = 90;
@@ -138,7 +136,6 @@ export default class Lights {
    */
   dispose() {
     this.scene.remove(this.mainLight);
-    this.scene.remove(this.ambientLight);
     this.scene.remove(this.HemisphereLight);
   }
 }

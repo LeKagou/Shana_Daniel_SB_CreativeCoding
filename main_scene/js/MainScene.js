@@ -11,10 +11,13 @@ import Piece from "./Objects/Piece.js";
 import { MaterialsManager } from "./MaterialsManager.js";
 import CapsuleLights from "./CapsuleLights.js";
 import { cos } from "three/webgpu";
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
 
 
 let finalOffset = 2;
-let finalPoses = [-3, -2.5, -2.3, -1.95, -1.75, -1.3];
+let finalPoses = [-3.15, -2.95, -2.25, -1.3, -1.1, -0.35];
 
 export default class MainScene {
   //? Initialise la scène avec les paramètres par défaut
@@ -22,6 +25,7 @@ export default class MainScene {
     this.meshes = [];
     this.mixers = [];
     this.buttons = [];
+    this.plane = null;
     this.pieces = {};
     this.piecesOBJ = [];
     this.arrayModels = modelDescriptors;
@@ -41,15 +45,16 @@ export default class MainScene {
     this.setupCamera();
     this.setupControls();
     this.setupLights();
+    this.setupBloom();
     this.setupEventListeners();
-        //!MON AJOUT
-        this.setupCapsuleLights();
-        //!FIN DE MON AJOUT
+    //!MON AJOUT
+    this.setupCapsuleLights();
+    //!FIN DE MON AJOUT
     this.createModels();
     this.createPhysicalButtons();
     this.setupInteraction();
     this.render();
-    this.firebaseListener = new FirebaseListener(this.pieces);
+    this.firebaseListener = new FirebaseListener(this.pieces, this.plane);
   }
 
   createModels() {
@@ -124,7 +129,8 @@ export default class MainScene {
               }
             }
           }
-
+          //createIlluminatedPlane
+          this.createLightPlane();
           //child.material = material;
           child.castShadow = true;
           child.receiveShadow = true;
@@ -172,11 +178,26 @@ export default class MainScene {
     this.numButtons = 6;
     // liste des couleurs
     for (let i = 0; i < this.otherUIDs.length; i++) {
-      const e = new ButtonCube(this.scene, i, this.otherUIDs,this.CapsuleLights);
+      const e = new ButtonCube(this.scene, i, this.otherUIDs, this.CapsuleLights);
       this.buttons.push(e);
     }
   }
-
+  createLightPlane() {
+    this.isLuminescent = false;
+    const geometry = new THREE.PlaneGeometry(3.3, 9);
+    const material = new THREE.MeshStandardMaterial({
+      transparent: true,
+      opacity: 0,
+      color: 0xffff00,
+      emissive: 0xffff00,
+      emissiveIntensity: 10,
+      side: THREE.DoubleSide
+    });
+    this.plane = new THREE.Mesh(geometry, material);
+    this.plane.position.set(5.25, 0.2, 0);
+    this.plane.rotation.x = Math.PI / 2;
+    this.scene.add(this.plane);
+  }
   //? Initialise les paramètres de base de la scène
   initializeBasicSettings() {
     this.scene = new THREE.Scene();
@@ -225,6 +246,19 @@ export default class MainScene {
   setupLights() {
     this.lights = new Lights(this.scene);
   }
+  // BLOOM effect
+  setupBloom() {
+    this.composer = new EffectComposer(this.renderer);
+    this.composer.addPass(new RenderPass(this.scene, this.camera));
+    this.bloomPass = new UnrealBloomPass(
+      new THREE.Vector2(window.innerWidth, window.innerHeight),
+      0.09, // strength
+      0.2, // radius
+      0.85 // threshold
+    );
+    this.composer.addPass(this.bloomPass);
+
+  }
 
   //!MON AJOUT
   setupCapsuleLights() {
@@ -262,6 +296,7 @@ export default class MainScene {
   //? Boucle de rendu
   render() {
     requestAnimationFrame(this.render);
+
     const test = Object.values(this.pieces);
     // console.log(test);
     let boolsTrue = [];
@@ -271,11 +306,15 @@ export default class MainScene {
     }
 
     if (boolsTrue.some((val) => val === false)) {
+      //ENLEVER LA LUMINOSITE
+      this.plane.material.opacity = 0;
       this.OBJFini = false;
     }
 
     if (boolsTrue.every((val) => val === true)) {
       if (this.OBJFini == false) {
+        //DEVENIT LUMINEUX
+        this.plane.material.opacity = 1;
         Object.values(this.pieces).forEach((p) => {
           p.goFinal();
         });
@@ -285,7 +324,8 @@ export default class MainScene {
 
 
     this.update();
-    this.renderer.render(this.scene, this.camera);
+    this.composer.render(this.scene, this.camera);
+
   }
 
   //? Gère le redimensionnement de la fenêtre

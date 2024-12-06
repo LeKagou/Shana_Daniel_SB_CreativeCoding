@@ -24,26 +24,26 @@ export default class Piece {
     this.StartPos = obj.position;
 
     this.old_date = null;
-    
+
   }
 
   definePositions(offsetOBJ, finalPos) {
     this.Positions = [
       {
         pos: new THREE.Vector3(this.obj.position.x, 0.35, this.obj.position.z),
-        rot: new THREE.Vector3(this.degreesConvertor(90),this.degreesConvertor(offsetOBJ.y),0)
+        rot: new THREE.Vector3(this.degreesConvertor(90), this.degreesConvertor(offsetOBJ.y), 0)
       },
       {
         pos: new THREE.Vector3(this.obj.position.x, 2.5, this.obj.position.z),
-        rot: new THREE.Vector3(this.degreesConvertor(90),0,0)
+        rot: new THREE.Vector3(this.degreesConvertor(90), 0, 0)
       },
       {
         pos: new THREE.Vector3(5.2, 2.5, -3.75 + this.index * 1.5),
-        rot: new THREE.Vector3(this.degreesConvertor(0),0,0)
+        rot: new THREE.Vector3(this.degreesConvertor(0), 0, 0)
       },
       {
         pos: new THREE.Vector3(5.2, 2.5, finalPos),
-        rot: new THREE.Vector3(this.degreesConvertor(0),0,0)
+        rot: new THREE.Vector3(this.degreesConvertor(0), 0, 0)
       },
     ];
   }
@@ -77,11 +77,11 @@ export default class Piece {
         }*/
 
 
-       this.obj.position.lerp(this.Positions[this.pieceState].pos, this.speed);
-       
-       this.obj.rotation.x = lerp(this.obj.rotation.x,this.Positions[this.pieceState].rot.x, 0.1);
-       this.obj.rotation.y = lerp(this.obj.rotation.y,this.Positions[this.pieceState].rot.y, 0.1);
-       this.obj.rotation.z = lerp(this.obj.rotation.z,this.Positions[this.pieceState].rot.z, 0.1);
+    this.obj.position.lerp(this.Positions[this.pieceState].pos, this.speed);
+
+    this.obj.rotation.x = lerp(this.obj.rotation.x, this.Positions[this.pieceState].rot.x, 0.1);
+    this.obj.rotation.y = lerp(this.obj.rotation.y, this.Positions[this.pieceState].rot.y, 0.1);
+    this.obj.rotation.z = lerp(this.obj.rotation.z, this.Positions[this.pieceState].rot.z, 0.1);
 
     /*
         if(this.rotateLoop){
@@ -104,14 +104,14 @@ export default class Piece {
 
 
     if (this.action) {
-      if (!this.isPlaying && position == "down" && entry.date!=this.old_date) {
+      if (!this.isPlaying && position == "down" && entry.date != this.old_date) {
         this.old_date = entry.date;
-        console.log("pos:",position)
+        console.log("pos:", position)
         this.positionGood = true;
         await this.phase1();
-      } else if(position == "up" && entry.date!=this.old_date){
+      } else if (position == "up" && entry.date != this.old_date) {
         this.old_date = entry.date;
-        console.log("back:",position)
+        console.log("back:", position)
         await this.phaseBack();
       }
     }
@@ -152,11 +152,36 @@ export default class Piece {
   }
   //!--------------------
 
-  async goFinal(){
+  async goFinal() {
     console.log("goFinal");
     await this.delay(1000);
+    // this.togglePlaneLuminescence(isLuminescent);
     this.pieceState = 3;
+
   }
+  createLightPlane(scene) {
+    this.scene = scene;
+    this.isLuminescent = true;
+    const geometry = new THREE.PlaneGeometry(3.3, 9);
+    const material = new THREE.MeshStandardMaterial({
+      color: 0x4A96FF,
+      emissive: 0xffff00,
+      emissiveIntensity: 10,
+    });
+    this.plane = new THREE.Mesh(geometry, material);
+    this.plane.position.set(5.25, 0.2, 0);
+    this.plane.rotation.x = Math.PI / 2;
+    this.scene.add(this.plane);
+  }
+  togglePlaneLuminescence(isLuminescent) {
+    // this.plane = plane;
+    if (isLuminescent) {
+      this.plane.material.emissiveIntensity = 1;
+    } else {
+      this.plane.material.emissiveIntensity = 0;
+    }
+  }
+
 
   degreesConvertor(degrees) {
     return (degrees * Math.PI) / 180;
@@ -165,4 +190,5 @@ export default class Piece {
   async delay(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
+
 }
