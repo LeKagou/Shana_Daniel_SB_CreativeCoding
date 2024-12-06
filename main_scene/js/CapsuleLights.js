@@ -24,6 +24,7 @@ export default class CapsuleLights {
             capsule.rotation.set(0, 0, this.degreeToRadians(90));
             this.LEDS.push(capsule);
         }
+        this.LEDS.reverse();
     }
 
     LighUp(elementIndex){

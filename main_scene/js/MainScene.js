@@ -42,14 +42,14 @@ export default class MainScene {
     this.setupControls();
     this.setupLights();
     this.setupEventListeners();
-        //!MON AJOUT
-        this.setupCapsuleLights();
-        //!FIN DE MON AJOUT
+    //!MON AJOUT
+    this.setupCapsuleLights();
+    //!FIN DE MON AJOUT
     this.createModels();
     this.createPhysicalButtons();
     this.setupInteraction();
     this.render();
-    this.firebaseListener = new FirebaseListener(this.pieces);
+    this.firebaseListener = new FirebaseListener(this.pieces,this.CapsuleLights);
   }
 
   createModels() {

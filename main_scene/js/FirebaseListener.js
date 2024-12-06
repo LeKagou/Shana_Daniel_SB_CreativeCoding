@@ -9,9 +9,10 @@ export default class FirebaseListener {
    * Initialise l'écouteur Firebase
    * @param {Array} shapes - Tableau des shapes à contrôler
    */
-  constructor(pieces) {
+  constructor(pieces,CapsuleLights) {
     this.pieces = pieces;
     this.firstCall = false;
+    this.CapsuleLights = CapsuleLights;
     this.initDebugLayer();
     this.setupListener();
   }
@@ -61,6 +62,14 @@ export default class FirebaseListener {
     if (entry.target === FirebaseConfig.UID) {
       Object.values(this.pieces).forEach((piece) => {
         if (this.shouldActivatePiece(piece, key, entry)) {
+          let index = piece.index;
+          //!!!dcdsds
+          console.log(index, entry.position);
+          if(entry.position === "down"){
+            this.CapsuleLights.LighUp(index);
+          }else if(entry.position === "up"){
+            this.CapsuleLights.LighOff(index);
+          }
           piece.activate(entry);
         }
       });

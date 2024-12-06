@@ -55,7 +55,7 @@ class FirebaseConfig {
   }
 
   reset() {
-    this.sendData(this.DEFAULT_PATH + "/" + this.UID, null);
+    this.sendData(this.DEFAULT_PATH, null);
   }
 }
 export default new FirebaseConfig();
