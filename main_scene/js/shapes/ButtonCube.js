@@ -16,6 +16,7 @@ export default class ButtonCube {
     this.createMesh();
     this.createColorTag();
     this.setupPosition();
+    this.CapsuleLights = CapsuleLights;
   }
   createColorTag() {
     const geometry = new THREE.CircleGeometry(0.14, 32);

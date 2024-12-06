@@ -9,6 +9,7 @@ import { loadModels } from "./loader";
 import { modelDescriptors } from "./modelDescriptors";
 import Piece from "./Objects/Piece.js";
 import { MaterialsManager } from "./MaterialsManager.js";
+import CapsuleLights from "./CapsuleLights.js";
 import { cos } from "three/webgpu";
 
 
@@ -41,6 +42,9 @@ export default class MainScene {
     this.setupControls();
     this.setupLights();
     this.setupEventListeners();
+        //!MON AJOUT
+        this.setupCapsuleLights();
+        //!FIN DE MON AJOUT
     this.createModels();
     this.createPhysicalButtons();
     this.setupInteraction();
@@ -168,7 +172,7 @@ export default class MainScene {
     this.numButtons = 6;
     // liste des couleurs
     for (let i = 0; i < this.otherUIDs.length; i++) {
-      const e = new ButtonCube(this.scene, i, this.otherUIDs);
+      const e = new ButtonCube(this.scene, i, this.otherUIDs,this.CapsuleLights);
       this.buttons.push(e);
     }
   }
@@ -221,6 +225,12 @@ export default class MainScene {
   setupLights() {
     this.lights = new Lights(this.scene);
   }
+
+  //!MON AJOUT
+  setupCapsuleLights() {
+    this.CapsuleLights = new CapsuleLights(this.scene);
+  }
+  //!FIN DE MON AJOUT
 
   //? Configure les écouteurs d'événements
   setupEventListeners() {
