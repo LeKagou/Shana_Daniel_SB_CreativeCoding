@@ -219,7 +219,7 @@ export default class MainScene {
   //? Configure la caméra orthographique
   setupCamera() {
     const aspect = window.innerWidth / window.innerHeight;
-    const viewSize = 7;
+    const viewSize = 6.75;
     this.camera = new THREE.OrthographicCamera(
       -viewSize * aspect,
       viewSize * aspect,
@@ -228,7 +228,7 @@ export default class MainScene {
       -50,
       100
     );
-    this.camera.position.set(14, 15, 15);
+    this.camera.position.set(14, 16, 15);
     this.camera.lookAt(0, 0, 0);
   }
 
