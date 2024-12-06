@@ -188,8 +188,8 @@ export default class MainScene {
     const material = new THREE.MeshStandardMaterial({
       transparent: true,
       opacity: 0,
-      color: 0xffffff,
-      emissive: 0xffde82,
+      color: 0x4fdfff,
+      emissive: 0x4fdfff,
       emissiveIntensity: 12,
       side: THREE.DoubleSide
     });

@@ -33,7 +33,7 @@ export const MaterialsManager = [
             },
             {
                 name: "BN",
-                color: "rgb(75,75,75)",
+                color: "rgb(75, 75, 75)",
                 roughness: 0.7,
                 metalness: 0,
                 flatShading: false,
@@ -44,7 +44,7 @@ export const MaterialsManager = [
             },
             {
                 name: "BR",
-                color: "rgb(250, 250, 250)",
+                color: "rgb(255, 246, 77)",
                 roughness: 0.7,
                 metalness: 0,
                 flatShading: false,
